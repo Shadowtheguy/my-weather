@@ -9,17 +9,32 @@
       rel="stylesheet"
     />
   </head>
-  <body>
-    <div class="card" style="width: 18rem">
-      <div class="card-body">
-        <h5 class="card-title">Enterprise Weather</h5>
-        <p class="card-text">
-          Temperature: <span id="temp"></span>°C<br />
-          Wind Speed: <span id="wind"></span> km/h<br />
-          Weather Code: <span id="code"></span>
-        </p>
+  <body class="bg-secondary">
+    <section class="conatiner bg-warning">
+        <h1 class="text-center text-primary m-3">Wonderful Weather Website!</h1>
+    </section>
+
+    <section class="container">
+      <div class="card text-center mx-auto" style="width: 18rem">
+        <div class="card-body bg-info rounded">
+          <h5 class="card-title text-white"><span id="city"> Weather</h5>
+          <p class="card-text text-white">
+            Temperature: <span id="temp"></span>°F<br />
+            Wind Speed: <span id="wind"></span> mph<br />
+            Weather Code: <span id="code"></span>
+          </p>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <section class="conatiner m-5">
+        <div class="row">
+            <button id="changeEnterprise" class="btn btn-success m-1">Enterprise</button>
+            <button id="changeAtlanta" class="btn btn-primary m-1">Atlanta</button>
+            <button id="changeSeattle" class="btn btn-warning m-1">Seattle</button>
+            <button id="changeNewOrleans" class="btn btn-danger m-1">New Orleans</button>
+        </div>
+    </section>
 
     <script src="helpers.js"></script>
     <script src="script.js"></script>
