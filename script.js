@@ -1,4 +1,4 @@
-//* Current Weather POJO
+//* Weather POJO's
 let enterpriseWeather = {
   latitude: 31.325638,
   longitude: -85.846725,
@@ -106,25 +106,25 @@ let weatherCode = null;
 onEvent("changeEnterprise", "click", function () {
   sessionStorage.setItem("currentCity", "enterprise");
   currentCity = sessionStorage.getItem("currentCity");
-  displayInformation();
+  fetchEnterpriseWeather();
 });
 
 onEvent("changeAtlanta", "click", function () {
   sessionStorage.setItem("currentCity", "atlanta");
   currentCity = sessionStorage.getItem("currentCity");
-  displayInformation();
+  fetchAtlantaWeather();
 });
 
 onEvent("changeSeattle", "click", function () {
   sessionStorage.setItem("currentCity", "seattle");
   currentCity = sessionStorage.getItem("currentCity");
-  displayInformation();
+  fetchSeattleWeather();
 });
 
 onEvent("changeNewOrleans", "click", function () {
   sessionStorage.setItem("currentCity", "newOrleans");
   currentCity = sessionStorage.getItem("currentCity");
-  displayInformation();
+  fetchNewOrleansWeather();
 });
 
 function displayInformation() {
@@ -196,8 +196,86 @@ function displayInformation() {
     windspeed = document.getElementById("wind");
     windspeed.textContent = newOrleansWeather.current.wind_speed_10m;
 
-      //setText("code", newOrleansWeather.current.weather_code)
+    //setText("code", newOrleansWeather.current.weather_code)
     weatherCode = document.getElementById("code");
     weatherCode.textContent = newOrleansWeather.current.weather_code;
   }
+}
+
+// Fetch Functions
+
+function fetchNewOrleansWeather() {
+  console.log("Fetch Weather from New Orleans");
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  fetch(
+    "https://api.open-meteo.com/v1/forecast?latitude=29.9547&longitude=-90.0751&current=temperature_2m,wind_speed_10m,weather_code&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch"
+  )
+    .then((response) => response.json())
+    .then(function (result) {
+      console.log(result);
+      newOrleansWeather = result;
+      displayInformation();
+    })
+    .catch((error) => console.error(error));
+}
+
+function fetchEnterpriseWeather() {
+  console.log("Fetch Weather from Enterprise");
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  fetch(
+    "https://api.open-meteo.com/v1/forecast?latitude=31.3152&longitude=-85.8552&current=temperature_2m,wind_speed_10m,weather_code&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch"
+  )
+    .then((response) => response.json())
+    .then(function (result) {
+      console.log(result);
+      enterpriseWeather = result;
+      displayInformation();
+    })
+    .catch((error) => console.error(error));
+}
+
+function fetchSeattleWeather() {
+  console.log("Fetch Weather from Seattle");
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  fetch(
+    "https://api.open-meteo.com/v1/forecast?latitude=47.6062&longitude=-122.3321&current=temperature_2m,wind_speed_10m,weather_code&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch"
+  )
+    .then((response) => response.json())
+    .then(function (result) {
+      console.log(result);
+      seattleWeather = result;
+      displayInformation();
+    })
+    .catch((error) => console.error(error));
+}
+
+function fetchAtlantaWeather() {
+  console.log("Fetch Weather from Atlanta");
+  const requestOptions = {
+    method: "GET",
+    redirect: "follow",
+  };
+
+  fetch(
+    "https://api.open-meteo.com/v1/forecast?latitude=33.749&longitude=-84.388&current=temperature_2m,wind_speed_10m,weather_code&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch"
+  )
+    .then((response) => response.json())
+    .then(function (result) {
+      console.log(result);
+      atlantaWeather = result;
+      displayInformation();
+    })
+    .catch((error) => console.error(error));
 }
